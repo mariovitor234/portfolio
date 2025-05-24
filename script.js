@@ -50,15 +50,20 @@ function setTheme(light) {
     ? '<svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>';
 }
-// Corrigir detecção inicial do tema
+// Detectar tema do sistema se não houver tema salvo
 (function(){
   const userTheme = localStorage.getItem('theme');
   if(userTheme === 'light') {
     document.body.classList.add('light');
     setTheme(true);
-  } else {
+  } else if(userTheme === 'dark') {
     document.body.classList.remove('light');
     setTheme(false);
+  } else {
+    // Detecta preferência do sistema
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.body.classList.toggle('light', prefersLight);
+    setTheme(prefersLight);
   }
 })();
 themeBtn.addEventListener('click', () => {
@@ -305,4 +310,7 @@ document.addEventListener('mouseleave', () => {
 });
 document.addEventListener('mouseenter', () => {
   cursor.style.opacity = '';
-}); 
+});
+
+// Expansão do formulário de contato
+// (Removido: agora feito só por CSS) 

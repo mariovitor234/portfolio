@@ -281,7 +281,7 @@ nav {
     margin-bottom: 2.2rem;
     max-width: 750px;
     font-weight: 300;
-    color: var(--footer-text-color);
+    color: #23272f;
     line-height: 1.6;
 }
 
@@ -308,6 +308,10 @@ nav {
 }
 
 /* Seções Genéricas */
+main section:not(.hero) {
+    margin-top: 0;
+}
+
 main section {
     padding: 5rem 2rem;
     max-width: 1100px;
@@ -550,73 +554,115 @@ main section.visible h2::after {
     }
 }
 
-/* Formulário de Contato */
+/* Área de contato mais atraente com borda neon animada 3D */
 .contact form {
-    max-width: 400px;
+    position: relative;
+    overflow: visible;
+    background: rgba(40, 48, 72, 0.22);
+    backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow: 0 8px 40px 0 var(--primary-glow), 0 2px 16px 0 var(--glass-border);
+    border-radius: 28px;
+    border: none;
+    z-index: 1;
+    max-width: 440px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.3rem 1rem;
-    border-radius: 14px;
-    background: var(--glass);
-    border: 1.5px solid var(--primary);
-    box-shadow: 0 4px 24px 0 var(--glass-border);
-    gap: 0.9rem;
+}
+.contact form::before {
+    display: none !important;
+}
+.contact form::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    pointer-events: none;
+    z-index: 2;
+    border: 2px solid transparent;
+    background: none;
+    /* Linha animada: gradiente linear que se move ao longo da borda */
+    border-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        var(--neon) 20%,
+        var(--neon) 40%,
+        transparent 60%,
+        transparent 100%
+    ) 1;
+    border-image-slice: 1;
+    animation: borderLineMove 2.2s linear infinite;
+}
+@keyframes borderLineMove {
+    0% {
+        border-image-source: linear-gradient(120deg, transparent 0%, var(--neon) 20%, var(--neon) 40%, transparent 60%, transparent 100%);
+    }
+    100% {
+        border-image-source: linear-gradient(480deg, transparent 0%, var(--neon) 20%, var(--neon) 40%, transparent 60%, transparent 100%);
+    }
+}
+.contact-collapsed, .contact-fields {
+    position: relative;
+    z-index: 3;
+}
+.contact:hover form::before, .contact:focus-within form::before {
+    filter: blur(3.5px) brightness(2) drop-shadow(0 0 24px var(--neon));
+    opacity: 1;
 }
 
-.contact label {
-    font-weight: bold;
-    font-size: clamp(1rem, 1.9vw, 1.1rem);
-    color: var(--primary);
-    margin-bottom: -0.8rem;
+.contact-fields {
+    opacity: 0;
+    transform: scaleY(0.7);
+    height: 0;
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s, height 0.5s;
+    will-change: opacity, transform, height;
+    overflow: hidden;
+    padding: 0 0.7rem;
+}
+.contact:hover .contact-fields, .contact:focus-within .contact-fields {
+    opacity: 1;
+    transform: scaleY(1);
+    height: auto;
+    pointer-events: auto;
+    padding: 1.1rem 0.7rem 1.1rem 0.7rem;
+}
+.contact:hover .contact-collapsed, .contact:focus-within .contact-collapsed {
+    display: none;
 }
 
-.contact input, .contact textarea {
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 0.5rem;
-    padding: 0.7rem 0.9rem;
-    font-size: 1rem;
-    border-radius: 7px;
-    background: var(--bg-light);
+.contact-collapsed {
     border: none;
-    color: var(--text);
+    outline: none;
+    appearance: none;
     font-family: inherit;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, border 0.3s, outline 0.2s;
 }
-
-.contact input:focus, .contact textarea:focus {
-    outline: 2px solid var(--primary);
-    background: #fff1;
-}
-
-.contact textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.contact input:last-child, .contact textarea:last-child {
-    margin-bottom: 0;
-}
-
-.contact .cta-button {
-    font-size: 1rem;
-    padding: 0.8rem 2rem;
-    border-radius: 24px;
-    background: var(--gradient);
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: 1;
-    box-shadow: 0 4px 24px 0 var(--glass-border);
-    border: none;
-    transition: background 0.3s, box-shadow 0.3s, transform 0.18s;
-}
-
-.contact .cta-button:hover, .contact .cta-button:focus {
-    background: var(--gradient);
-    filter: brightness(1.1);
-    transform: translateY(-2px) scale(1.04);
-    outline: 2px solid var(--primary);
+.contact-collapsed:focus {
+    outline: 2.5px solid var(--primary);
     outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--primary-glow);
+    z-index: 4;
+}
+
+.contact-fields label {
+    display: block;
+    margin-bottom: 0.25rem;
+    margin-top: 0.7rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #23272f;
+    letter-spacing: 0.2px;
+    text-align: left;
+    transition: color 0.3s;
+}
+body:not(.light) .contact-fields label {
+    color: var(--primary);
+}
+@media (max-width: 600px) {
+    .contact-fields label {
+        font-size: 0.98rem;
+        margin-top: 0.5rem;
+    }
 }
 
 /* Rodapé */
@@ -678,6 +724,18 @@ footer .neon {
     }
 }
 
+@keyframes borderLight {
+    0% {
+        border-image-source: linear-gradient(120deg, var(--primary), var(--secondary), var(--primary));
+    }
+    50% {
+        border-image-source: linear-gradient(300deg, var(--secondary), var(--primary), var(--secondary));
+    }
+    100% {
+        border-image-source: linear-gradient(480deg, var(--primary), var(--secondary), var(--primary));
+    }
+}
+
 /* Responsividade */
 @media (max-width: 900px) {
     .about-content {
@@ -717,6 +775,11 @@ footer .neon {
     .hero {
         padding-top: 72px;
         min-height: calc(70vh - 72px);
+        padding: 0 1rem 4rem 1rem;
+    }
+
+    main section:not(.hero) {
+        margin-top: 0;
     }
 
     main section {
@@ -764,6 +827,14 @@ footer .neon {
         min-height: 72px;
         height: 72px;
         line-height: 72px;
+    }
+
+    .contact form {
+        max-width: 98vw;
+        border-radius: 18px;
+    }
+    .contact form::after {
+        border-radius: 18px;
     }
 }
 

@@ -76,11 +76,17 @@
 
         <section id="contact" class="contact">
             <h2>Contato</h2>
-            <form>
-                <input type="text" placeholder="Seu nome" required>
-                <input type="email" placeholder="Seu email" required>
-                <textarea placeholder="Sua mensagem" required></textarea>
-                <button type="submit" class="cta-button">Enviar</button>
+            <form role="form">
+                <button class="contact-collapsed" aria-label="Abrir formulário de contato" tabindex="0">Contato</button>
+                <div class="contact-fields">
+                    <label for="contact-nome">Nome</label>
+                    <input id="contact-nome" type="text" placeholder="Seu nome" required>
+                    <label for="contact-email">Email</label>
+                    <input id="contact-email" type="email" placeholder="Seu email" required>
+                    <label for="contact-msg">Mensagem</label>
+                    <textarea id="contact-msg" placeholder="Sua mensagem" required></textarea>
+                    <button type="submit" class="cta-button" aria-label="Enviar mensagem">Enviar</button>
+                </div>
             </form>
         </section>
     </main>
