@@ -103,13 +103,88 @@ window.addEventListener("scroll", animateSkillBars);
 window.addEventListener("load", animateSkillBars);
 window.addEventListener("resize", animateSkillBars);
 
-// Prevent form submit (demo)
+// Feedback acessível para envio de formulário
+const feedbackDiv = document.createElement('div');
+feedbackDiv.setAttribute('aria-live', 'polite');
+feedbackDiv.setAttribute('role', 'status');
+feedbackDiv.style.position = 'fixed';
+feedbackDiv.style.bottom = '1rem';
+feedbackDiv.style.left = '50%';
+feedbackDiv.style.transform = 'translateX(-50%)';
+feedbackDiv.style.background = 'var(--card-bg)';
+feedbackDiv.style.color = 'var(--primary)';
+feedbackDiv.style.padding = '0.75rem 1.5rem';
+feedbackDiv.style.borderRadius = '8px';
+feedbackDiv.style.boxShadow = '0 2px 12px rgba(0,0,0,0.15)';
+feedbackDiv.style.zIndex = '9999';
+feedbackDiv.style.display = 'none';
+document.body.appendChild(feedbackDiv);
+
+// Remover preventDefault para permitir envio real
+// document.querySelectorAll("form").forEach((f) =>
+//   f.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     alert("Mensagem enviada! (demo)");
+//   })
+// );
+
 document.querySelectorAll("form").forEach((f) =>
   f.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Mensagem enviada! (demo)");
+    feedbackDiv.textContent = "Mensagem enviada!";
+    feedbackDiv.style.display = 'block';
+    setTimeout(() => {
+      feedbackDiv.style.display = 'none';
+    }, 3000);
   })
 );
+
+// Rolagem suave para âncoras internas
+const anchorLinks = document.querySelectorAll('a[href^="#"]');
+anchorLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  });
+});
+
+// Tornar listeners de scroll passivos
+window.addEventListener("scroll", revealOnScroll, { passive: true });
+window.addEventListener("scroll", animateSkillBars, { passive: true });
+window.addEventListener("scroll", () => {
+  if (scrollTimeout) {
+    window.cancelAnimationFrame(scrollTimeout);
+  }
+  scrollTimeout = window.requestAnimationFrame(() => {
+    const currentScroll = window.pageYOffset;
+    const scrollDelta = currentScroll - lastScroll;
+    if (currentScroll > 100) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+    lastScroll = currentScroll;
+  });
+}, { passive: true });
+
+// Feedback visual ao expandir formulário de contato
+const contactBtn = document.querySelector('.contact-collapsed');
+const contactFields = document.querySelector('.contact-fields');
+if (contactBtn && contactFields) {
+  contactBtn.addEventListener('click', () => {
+    contactFields.classList.toggle('expanded');
+    if (contactFields.classList.contains('expanded')) {
+      contactFields.style.boxShadow = '0 0 0 3px var(--primary-glow)';
+      contactFields.style.transition = 'box-shadow 0.3s';
+    } else {
+      contactFields.style.boxShadow = '';
+    }
+  });
+}
 
 // Loading Screen com Fade Elegante
 const loadingOverlay = document.createElement("div");
@@ -190,7 +265,7 @@ window.addEventListener("scroll", () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
       const scrolled = window.pageYOffset;
-      const parallaxSpeed = 0.5;
+      const parallaxSpeed = 0.2;
       const yPos = scrolled * parallaxSpeed;
 
       hero.style.transform = `translate3d(0, ${yPos}px, 0)`;

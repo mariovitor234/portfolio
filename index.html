@@ -9,6 +9,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <meta name="description" content="Portfólio de Mário Vitor: desenvolvedor focado em interfaces modernas, acessíveis e performáticas." />
+    <meta name="author" content="Mário Vitor" />
+    <meta property="og:title" content="Portfólio | Mário Vitor" />
+    <meta property="og:description" content="Portfólio de Mário Vitor: desenvolvedor focado em interfaces modernas, acessíveis e performáticas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/583231?v=4" />
+    <meta property="og:locale" content="pt_BR" />
   </head>
   <body>
     <div id="particles-js"></div>
@@ -42,8 +49,9 @@
         <div class="about-content">
           <img
             src="https://avatars.githubusercontent.com/u/583231?v=4"
-            alt="Foto de Perfil"
+            alt="Foto de Perfil de Mário Vitor"
             class="profile-pic"
+            loading="lazy"
           />
           <p>
             Sou um dev focado em interfaces modernas, acessíveis e
@@ -59,28 +67,31 @@
             <img
               src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
               alt="Screenshot do Projeto Incrível"
+              loading="lazy"
             />
             <h3>Projeto Incrível</h3>
             <p>Landing page animada com React e GSAP.</p>
-            <a href="#" class="cta-button-small" target="_blank">Ver Online</a>
+            <a href="https://exemplo.com/projeto-incrivel" class="cta-button-small" target="_blank" rel="noopener noreferrer">Ver Online</a>
           </div>
           <div class="card">
             <img
               src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80"
               alt="Screenshot do App Moderno"
+              loading="lazy"
             />
             <h3>App Moderno</h3>
             <p>Dashboard responsivo com animações e dark mode.</p>
-            <a href="#" class="cta-button-small" target="_blank">Ver Online</a>
+            <a href="https://exemplo.com/app-moderno" class="cta-button-small" target="_blank" rel="noopener noreferrer">Ver Online</a>
           </div>
           <div class="card">
             <img
               src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
               alt="Screenshot do CLI Tool"
+              loading="lazy"
             />
             <h3>CLI Tool</h3>
             <p>Ferramenta de linha de comando feita em Node.js.</p>
-            <a href="#" class="cta-button-small" target="_blank">Ver Online</a>
+            <a href="https://exemplo.com/cli-tool" class="cta-button-small" target="_blank" rel="noopener noreferrer">Ver Online</a>
           </div>
         </div>
       </section>
@@ -98,7 +109,7 @@
 
       <section id="contact" class="contact">
         <h2>Entre em Contato 📬</h2>
-        <form role="form">
+        <form role="form" action="https://formspree.io/f/mayvlqen" method="POST" aria-labelledby="contact-title">
           <button
             class="contact-collapsed"
             aria-label="Abrir formulário de contato"
@@ -110,20 +121,25 @@
             <label for="contact-nome">Nome</label>
             <input
               id="contact-nome"
+              name="nome"
               type="text"
               placeholder="Seu nome"
               required
+              aria-required="true"
             />
             <label for="contact-email">Email</label>
             <input
               id="contact-email"
+              name="email"
               type="email"
               placeholder="Seu email"
               required
+              aria-required="true"
             />
             <label for="contact-msg">Mensagem</label>
             <textarea
               id="contact-msg"
+              name="mensagem"
               placeholder="Sua mensagem"
               required
             ></textarea>

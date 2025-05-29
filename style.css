@@ -232,7 +232,7 @@ nav {
 
 /* Seção Hero */
 .hero {
-  position: static;
+  position: relative;
   padding-top: 72px;
   min-height: calc(80vh - 72px);
   display: flex;
@@ -271,10 +271,10 @@ nav {
 .hero h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   margin-bottom: 1.2rem;
-  /* background: var(--gradient); */
+  background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: transparent 0 0 0 1;
   letter-spacing: -1px;
   line-height: 1.2;
 }
@@ -949,9 +949,11 @@ footer .neon {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
+  *, *::before, *::after {
     transition: none !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -1002,14 +1004,36 @@ select {
   cursor: auto !important;
 }
 
-.nav-links a:focus {
+.nav-links a:focus, .cta-button:focus, .cta-button-small:focus, .skill-btn:focus, .contact-collapsed:focus, input:focus, textarea:focus, button:focus {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--primary-glow);
+  z-index: 2;
 }
 
-.cta-button:focus {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+/* Contraste melhorado para botões em ambos os temas */
+.cta-button, .cta-button-small, .skill-btn {
+  color: var(--button-text-color);
+  background: var(--gradient);
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+body.light .cta-button, body.light .cta-button-small, body.light .skill-btn {
+  color: #fff;
+  background: var(--gradient);
+}
+
+body.dark-theme .cta-button, body.dark-theme .cta-button-small, body.dark-theme .skill-btn {
+  color: #fff;
+  background: var(--gradient);
+}
+
+/* will-change para elementos animados */
+.hero, .card, .profile-pic {
+  will-change: transform, opacity;
 }
 
 .about {
