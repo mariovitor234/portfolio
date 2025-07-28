@@ -112,36 +112,6 @@
   window.addEventListener("resize", animateSkillBars);
 })();
 
-// --- Feedback acessível para envio de formulário ---
-(function () {
-  const feedbackDiv = document.createElement("div");
-  feedbackDiv.setAttribute("aria-live", "polite");
-  feedbackDiv.setAttribute("role", "status");
-  Object.assign(feedbackDiv.style, {
-    position: "fixed",
-    bottom: "1rem",
-    left: "50%",
-    transform: "translateX(-50%)",
-    background: "var(--card-bg)",
-    color: "var(--primary)",
-    padding: "0.75rem 1.5rem",
-    borderRadius: "8px",
-    boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
-    zIndex: "9999",
-    display: "none",
-  });
-  document.body.appendChild(feedbackDiv);
-  document.querySelectorAll("form").forEach((f) =>
-    f.addEventListener("submit", (e) => {
-      feedbackDiv.textContent = "Mensagem enviada!";
-      feedbackDiv.style.display = "block";
-      setTimeout(() => {
-        feedbackDiv.style.display = "none";
-      }, 3000);
-    })
-  );
-})();
-
 // --- Rolagem suave para âncoras internas ---
 (function () {
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -245,9 +215,75 @@
   }
 })();
 
+// --- Feedback visual no formulário de contato ---
+const form = document.querySelector('form[action*="formspree"]');
+if (form) {
+  form.addEventListener("submit", function (e) {
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+    setTimeout(() => {
+      btn.textContent = "Enviado!";
+      btn.classList.add("enviado");
+      setTimeout(() => {
+        btn.textContent = "Enviar";
+        btn.classList.remove("enviado");
+        btn.disabled = false;
+        form.reset();
+      }, 2000);
+    }, 1200);
+  });
+}
+
 // --- Função para restaurar o cursor padrão do navegador ---
 function restaurarCursorPadrao() {
   document.body.style.cursor = "auto";
 }
 // Você pode chamar essa função quando quiser voltar ao cursor padrão
 // Exemplo: restaurarCursorPadrao();
+
+window.addEventListener("DOMContentLoaded", function () {
+  // Animação fade-in no header
+  const header = document.querySelector("header");
+  if (header) {
+    header.style.opacity = "0";
+    header.style.transform = "translateY(-30px)";
+    setTimeout(() => {
+      header.style.transition = "opacity 0.8s, transform 0.8s";
+      header.style.opacity = "1";
+      header.style.transform = "translateY(0)";
+    }, 100);
+  }
+
+  // Botão voltar ao topo
+  const btn = document.createElement("button");
+  btn.innerHTML = "↑";
+  btn.id = "back-to-top";
+  btn.title = "Voltar ao topo";
+  btn.setAttribute("aria-label", "Voltar ao topo");
+  btn.style.display = "none";
+  document.body.appendChild(btn);
+  window.addEventListener(
+    "scroll",
+    () => {
+      btn.style.display = window.scrollY > 300 ? "block" : "none";
+    },
+    { passive: true }
+  );
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Tema automático
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersLight = window.matchMedia(
+    "(prefers-color-scheme: light)"
+  ).matches;
+  if (prefersDark) document.body.classList.add("dark-theme");
+  if (prefersLight) document.body.classList.add("light");
+
+  // Lazy loading para todas imagens
+  document.querySelectorAll("img:not([loading])").forEach((img) => {
+    img.setAttribute("loading", "lazy");
+  });
+});

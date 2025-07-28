@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfólio | Mário vitor</title>
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
@@ -25,13 +25,27 @@
       content="https://avatars.githubusercontent.com/u/583231?v=4"
     />
     <meta property="og:locale" content="pt_BR" />
+    <!-- SEO e Open Graph -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:site_name" content="Portfólio | Mário Vitor" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portfólio | Mário Vitor" />
+    <meta
+      name="twitter:description"
+      content="Portfólio de Mário Vitor: desenvolvedor focado em interfaces modernas, acessíveis e performáticas."
+    />
+    <meta
+      name="twitter:image"
+      content="https://avatars.githubusercontent.com/u/583231?v=4"
+    />
   </head>
   <body>
-    <!-- Este arquivo foi movido para public/index.html -->
     <div id="particles-js"></div>
     <header>
       <nav>
-        <div class="logo">Mário Vitor</div>
+        <a href="#" class="logo" aria-label="Mário Vitor, início" tabindex="0">
+          Mário Vitor
+        </a>
         <ul class="nav-links">
           <li><a href="#about">Sobre</a></li>
           <li><a href="#projects">Projetos</a></li>
@@ -139,17 +153,10 @@
         <h2>Entre em Contato 📬</h2>
         <form
           role="form"
-          action="https://formspree.io/f/mayvlqen"
+          action="https://formspree.io/f/xyzpjznd"
           method="POST"
           aria-labelledby="contact-title"
         >
-          <button
-            class="contact-collapsed"
-            aria-label="Abrir formulário de contato"
-            tabindex="0"
-          >
-            Contato
-          </button>
           <div class="contact-fields">
             <label for="contact-nome">Nome</label>
             <input
@@ -189,12 +196,22 @@
     </main>
 
     <footer>
-      <p>
-        &copy; 2025 Mário vitor. Feito com <span class="neon">❤</span> e muito
-        ☕!
-      </p>
+      <p>&copy; 2025 Mário vitor. Feito com muito ☕!</p>
     </footer>
 
-    <script src="../js/script.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
   </body>
 </html>
