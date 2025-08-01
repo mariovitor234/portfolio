@@ -2,6 +2,9 @@
 
 Este é o repositório do portfólio de Mário Vitor, desenvolvido para apresentar projetos, habilidades e informações de contato de forma moderna, acessível e responsiva.
 
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 ## 📁 Estrutura de Pastas
 
 ```
@@ -38,6 +41,12 @@ portfolio/
 - SEO básico e meta tags para redes sociais
 - Acessibilidade aprimorada
 
+## 🛠️ Tecnologias
+
+- HTML5
+- CSS3 (Flexbox, Grid, Variáveis CSS)
+- JavaScript (ES6+)
+
 ## 📦 Adicionando recursos
 
 - Imagens: coloque em `assets/img/` e ajuste o caminho no HTML/CSS se necessário.
@@ -52,6 +61,12 @@ portfolio/
 ## 👨‍💻 Autor
 
 - [Mário Vitor](mariovitor234@gmail.com)
+
+## 📫 Contato
+
+- [LinkedIn](https://www.linkedin.com/in/mariovitorfs)
+- [Email](mailto:mariovitor234@gmail.com)
+- [whatsapp] ( 37 9 8408-5788)
 
 ---
 
