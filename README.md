@@ -60,13 +60,13 @@ portfolio/
 
 ## 👨‍💻 Autor
 
-- [Mário Vitor](mariovitor234@gmail.com)
+- [Mário Vitor](mailto:mariovitor234@gmail.com)
 
 ## 📫 Contato
 
 - [LinkedIn](https://www.linkedin.com/in/mariovitorfs)
 - [Email](mailto:mariovitor234@gmail.com)
-- [whatsapp] (https://wa.me/+5537984085788)
+- [WhatsApp](https://wa.me/+5537984085788)
 
 ---
 
