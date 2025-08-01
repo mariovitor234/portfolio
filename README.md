@@ -66,7 +66,7 @@ portfolio/
 
 - [LinkedIn](https://www.linkedin.com/in/mariovitorfs)
 - [Email](mailto:mariovitor234@gmail.com)
-- [whatsapp] ( 37 9 8408-5788)
+- [whatsapp] (https://wa.me/+5537984085788)
 
 ---
 
