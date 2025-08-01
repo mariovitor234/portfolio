@@ -13,8 +13,8 @@ portfolio/
 │   └── style.css     # Estilos principais
 ├── js/
 │   └── script.js     # Scripts principais
-├── public/
-│   └── index.html    # Página principal do portfólio
+├── index.html        # Página principal do portfólio
+├── README.md         # Este arquivo
 ```
 
 ## 🚀 Como usar
@@ -24,15 +24,19 @@ portfolio/
    git clone <url-do-repositorio>
    ```
 2. Abra a pasta `portfolio` no seu editor de código.
-3. Abra o arquivo `public/index.html` em seu navegador para visualizar o portfólio.
+3. Abra o arquivo `index.html` em seu navegador para visualizar o portfólio.
 
 ## ✨ Funcionalidades
 
-- Tema claro/escuro com alternância
-- Destaque visual do nome no header
+- Tema claro/escuro com alternância automática e manual
+- Destaque visual do nome no header, adaptado para ambos os temas
 - Skills em barra com cor adaptada ao tema
-- Layout responsivo
-- Código otimizado e organizado
+- Layout 100% responsivo (inclusive formulário de contato)
+- Botão de voltar ao topo e botão de alternância de tema estilizados
+- Formulário de contato integrado ao Formspree
+- Código otimizado, limpo e organizado
+- SEO básico e meta tags para redes sociais
+- Acessibilidade aprimorada
 
 ## 📦 Adicionando recursos
 
@@ -41,8 +45,9 @@ portfolio/
 
 ## 🧹 Organização
 
-- Arquivos antigos na raiz podem ser removidos.
-- Todos os caminhos já estão ajustados para a estrutura proposta.
+- Todos os arquivos principais estão na raiz ou nas pastas `css/`, `js/` e `assets/`.
+- Caminhos já ajustados para a estrutura atual.
+- Arquivos antigos e não utilizados podem ser removidos.
 
 ## 👨‍💻 Autor
 

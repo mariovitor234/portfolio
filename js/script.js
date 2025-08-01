@@ -1,9 +1,3 @@
-// Este arquivo foi movido para js/script.js
-// Otimização e organização do código
-// 1. Agrupamento de seletores e listeners semelhantes
-// 2. Redução de repetições e uso de funções utilitárias
-// 3. Comentários para clareza
-
 // --- Partículas animadas no fundo ---
 (function () {
   const canvas = document.createElement("canvas");
