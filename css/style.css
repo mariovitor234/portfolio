@@ -719,6 +719,14 @@ button:hover::after,
     font-size: 0.98rem;
     padding: 0.7rem 0.3rem;
   }
+
+  .contact form {
+    max-width: 98vw;
+    width: 100%;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    border-radius: 14px;
+    min-width: 0;
+  }
 }
 
 /* === FORMULÁRIO DE CONTATO: AJUSTES DE CORES E LABELS === */
@@ -846,8 +854,10 @@ body.dark-theme textarea:invalid {
 .contact-fields input,
 .contact-fields textarea {
   width: 100%;
-  max-width: 340px;
-  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
   padding: 0.8rem 0.9rem 0.6rem 0.9rem;
   font-size: 1rem;
   border-radius: 10px;
@@ -958,9 +968,26 @@ textarea:invalid {
   }
   .contact-fields input,
   .contact-fields textarea {
+    width: 100%;
     max-width: 100%;
-    font-size: 0.97rem;
-    padding: 0.7rem 0.7rem 0.5rem 0.7rem;
+    min-width: 0;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .contact-fields label {
+    font-size: 0.98rem;
+    margin-left: 0;
+  }
+  .contact-fields .cta-button[type="submit"] {
+    width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+    padding: 1rem 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -1221,14 +1248,41 @@ footer .neon {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
+/* Responsividade extra para o formulário de contato */
+@media (max-width: 480px) {
+  .contact form {
+    max-width: 98vw;
+    width: 100%;
+    min-width: 0;
+    padding: 1rem 0.2rem 1rem 0.2rem;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+  .contact-fields {
+    padding: 0 0.1rem;
+  }
+  .contact-fields input,
+  .contact-fields textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .contact-fields label {
+    font-size: 0.98rem;
+    margin-left: 0;
+  }
+  .contact-fields .cta-button[type="submit"] {
+    width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+    padding: 1rem 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
